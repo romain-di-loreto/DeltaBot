@@ -4,6 +4,7 @@
 ### Node ###
 # Files/Folders
 .env
+package-lock.json
 
 # Logs
 logs
