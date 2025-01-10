@@ -3,6 +3,7 @@ import Discord, { REST } from 'discord.js';
 import dotenv from 'dotenv';
 import { checkInternetConnection } from './tools';
 import { EffectsOptions, ConsoleEffects } from "./ConsoleColors";
+import { Server } from './Types/Discord';
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ export const client = new Discord.Client({
         Discord.GatewayIntentBits.MessageContent
 	]
 });
-export const servers = [];
+export const servers:Server[] = [];
 export const prefix:string = process.env.BOT_PREFIX!;
 export var isConnected = false;
 
@@ -45,8 +46,10 @@ export async function startup(): Promise<void> {
 	
 }
 
-export async function handleCliCommand (userMessage: Discord.Message, command:string, ...words: string[]): Promise<void> {
-    console.log(userMessage)
+export async function handleCliCommand(userMessage: Discord.Message, command:string, ...words: string[]): Promise<void> {
+    console.log(userMessage.author.displayName)
     console.log(command)
     console.log(words)
+
+    userMessage.delete();
 }
