@@ -1,13 +1,15 @@
-import { EffectsOptions, ConsoleEffects} from './ConsoleColors.js';
+import { EffectsOptions, ConsoleEffects} from './ConsoleColors';
 
 var exitWasTriggered = false;
 
-export const setExitHandler = () => {
-    const exitHandler = (options, exitCode) => {
+export type ExitOptions = { cleanup?: boolean, exit?: boolean }
+
+export function setExitHandler() {
+    const exitHandler = (options: ExitOptions, exitCode: string | number) => {
         const previousState = exitWasTriggered;
         exitWasTriggered = true;
-        if (!previousState && exitCode === 'SIGINT') ConsoleEffects.Red([EffectsOptions.Reset], 'Interrupting the bot');
-        else if (!previousState && (exitCode || exitCode === 0)) ConsoleEffects.Red([EffectsOptions.Reset], 'Bot stopped with exit code: ', exitCode);
+        if (!previousState && exitCode === 'SIGINT') ConsoleEffects.Red([EffectsOptions.General.Reset], 'Interrupting the bot');
+        else if (!previousState && (exitCode || exitCode === 0)) ConsoleEffects.Red([EffectsOptions.General.Reset], 'Bot stopped with exit code: ', exitCode);
         if (options.cleanup) cleanup();
         if (!previousState && options.exit) process.exit();
     }
@@ -28,6 +30,6 @@ export const setExitHandler = () => {
     process.on('uncaughtException', exitHandler.bind(null, {exit:true}));   
 }
 
-const cleanup = () => {
+const cleanup: () => void = () => {
     console.log('Starting cleanup...');
 }

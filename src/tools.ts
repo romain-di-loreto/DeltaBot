@@ -1,8 +1,8 @@
-import { EffectsOptions, ConsoleEffects} from './ConsoleColors.js';
+import { ConsoleEffects } from './ConsoleColors';
 import isOnline from 'is-online';
 
-const connectionTest = async () => {
-	var connectionStatus = false;
+const connectionTest: () => Promise<boolean> = async () => {
+	var connectionStatus: boolean = false;
 
 	console.log('Checking for internet connection...');
 	try {
@@ -20,14 +20,14 @@ const connectionTest = async () => {
 	return connectionStatus;
 }
 
-export const checkInternetConnection = async (interval) => {	
+export async function checkInternetConnection(interval: number): Promise<boolean> {	
 	if(await connectionTest())
 		return true;
 
 	console.log('Retrying in ' + interval / 1000 + ' seconds...');
-	return await new Premise((resolve) => {	
+	return await new Promise((resolve) => {	
 		const intervalId = setInterval(async () => {			
-			isConnected = await connectionTest();
+			const isConnected:boolean = await connectionTest();
 			if (!isConnected) {			
 				console.log('Retrying in ' + interval / 1000 + ' seconds...');
 			} else {				

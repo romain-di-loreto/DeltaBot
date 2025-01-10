@@ -3,6 +3,8 @@
 
 ### Node ###
 # Files/Folders
+build
+build/*
 .env
 package-lock.json
 

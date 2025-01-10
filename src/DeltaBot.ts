@@ -1,8 +1,8 @@
 import { joinVoiceChannel, createAudioPlayer } from '@discordjs/voice';
 import Discord, { REST } from 'discord.js';
 import dotenv from 'dotenv';
-import { checkInternetConnection } from './tools.js';
-import { EffectsOptions, ConsoleEffects } from "./ConsoleColors.js";
+import { checkInternetConnection } from './tools';
+import { EffectsOptions, ConsoleEffects } from "./ConsoleColors";
 
 dotenv.config();
 
@@ -23,13 +23,13 @@ export const client = new Discord.Client({
 	]
 });
 export const servers = [];
-export const prefix = process.env.BOT_PREFIX;
+export const prefix:string = process.env.BOT_PREFIX!;
 export var isConnected = false;
 
-export const startup = async () => {
+export async function startup(): Promise<void> {
 	console.clear();
 	console.log('Starting Deltabot');
-	await checkInternetConnection();
+	await checkInternetConnection(1);
 
 	console.log('Bot logging in...');
     try {
@@ -37,15 +37,15 @@ export const startup = async () => {
 	    // await client.login("ABCDEFGHIJKLMNOPQRSTUVWX.YZabcd.efghijklmnopqrstuvwxyz012345678_9ABCDE") //Dummy token meant to test error while connecting
         ConsoleEffects.Green(null, '\tSucceeded');
     }
-    catch(e)
+    catch(error)
     {
         ConsoleEffects.Red(null, '\tFailed');
-        throw e
+        throw error;
     }
 	
 }
 
-export const handleCliCommand = async (userMessage, command, ...words) => {
+export async function handleCliCommand (userMessage: Discord.Message, command:string, ...words: string[]): Promise<void> {
     console.log(userMessage)
     console.log(command)
     console.log(words)
