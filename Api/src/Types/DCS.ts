@@ -52,3 +52,41 @@ export type FlightGroup = {
     members: FlightMember[],
     name: string,
 }
+
+export type DB_DCSProfile = {
+    id: number,
+    user_id: number,
+    name: string | null,
+    modex: string | null
+}
+
+export type DB_DCSPlane = {
+    id: number,
+    name: string
+}
+
+export type DB_DCSMap = {
+    id: number,
+    name: string
+}
+
+export type DB_DCSFlightGroup = {
+    id: number,
+    name: string
+}
+
+export type DB_DCSFlightMember = {
+    profile_id: number,
+    group_id: number,
+    plane_id: number,
+    name: number
+}
+
+export type DB_DCSSession = {
+    id: number,
+    name: string | null,
+    plane_id: number,
+    map_id: number,
+    role: number,
+    flight_group_id: number | null
+}

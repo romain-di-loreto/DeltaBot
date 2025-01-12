@@ -23,6 +23,7 @@ const schemas: TableSchemas = {
         columns: [
             C_ID,
             { name: "user_id", type: ColumnType.INTEGER, unique: true, notNull: true, foreignKey: { table: "users", column: "id" } },
+            { name: "discord_name", type: ColumnType.TEXT, notNull: true },
             { name: "name", type: ColumnType.TEXT },
             { name: "modex", type: ColumnType.TEXT },
         ]
@@ -45,15 +46,16 @@ const schemas: TableSchemas = {
             C_NAME
         ]
     },
-    dcs_flight_member: {
+    dcs_flight_members: {
         columns: [
+            C_ID,
             { name: "profile_id", type: ColumnType.INTEGER, notNull: true },
             { name: "group_id", type: ColumnType.INTEGER, notNull: true, foreignKey: { table: "dcs_flight_groups", column: "id" } },
             { name: "plane_id", type: ColumnType.INTEGER, notNull: true, foreignKey: { table: "dcs_planes", column: "id" } },
             { name: "position", type: ColumnType.INTEGER }
         ]
     },
-    dcs_session: {
+    dcs_sessions: {
         columns: [
             C_ID,
             { name: "name", type: ColumnType.TEXT },

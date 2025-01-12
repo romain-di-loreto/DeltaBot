@@ -48,7 +48,12 @@ export type TableSchemas = {
 };
 
 export type TableInfo = {
-
+    cid: number,
+    name:string,
+    type: string,
+    notnull: boolean | number,
+    dflt_value: string | boolean | number | null,
+    pk: boolean | number
 }
 
 export type ForeignKeyList = {
@@ -59,7 +64,7 @@ export type ForeignKeyList = {
     to: string, 
     on_update: string,
     on_delete: string,
-    match: string | 'NONE'
+    match: string
 }
 
 export const C_ID:Column = { 
@@ -73,4 +78,13 @@ export const C_NAME:Column = {
     name: "name", 
     type: ColumnType.TEXT, 
     notNull: true 
+}
+
+export enum SQLITE_ERRORS {
+    UNIQUE = 'SQLITE_CONSTRAINT_UNIQUE',
+    PRIMARYKEY = 'SQLITE_CONSTRAINT_PRIMARYKEY',
+    FOREIGNKEY = 'SQLITE_CONSTRAINT_FOREIGNKEY',
+    NOTNULL = 'SQLITE_CONSTRAINT_NOTNULL',
+    CHECK = 'SQLITE_CONSTRAINT_CHECK',
+    RANGE = 'SQLITE_RANGE'
 }
