@@ -1,6 +1,6 @@
 import { client, prefix, startup, handleCliCommand } from "./DeltaBot";
 import { Events } from "discord.js";
-import { ConsoleEffects } from "./ConsoleColors";
+import { ConsolePlus } from "./ConsoleColors";
 import { setExitHandler } from './exit';
 
 setExitHandler();
@@ -8,7 +8,7 @@ setExitHandler();
 startup();
 
 client.once(Events.ClientReady, (readyClient): void => {
-    ConsoleEffects.Cyan(null, `${readyClient.user.displayName} is now online`);
+    ConsolePlus.Cyan(null, `${readyClient.user.displayName} is now online`);
 });
 
 client.on(Events.MessageCreate, (createdMessage): void => {

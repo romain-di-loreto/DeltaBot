@@ -2,7 +2,7 @@ import { joinVoiceChannel, createAudioPlayer } from '@discordjs/voice';
 import Discord, { REST } from 'discord.js';
 import dotenv from 'dotenv';
 import { checkInternetConnection } from './tools';
-import { EffectsOptions, ConsoleEffects } from "./ConsoleColors";
+import { EffectsOptions, ConsolePlus } from "./ConsoleColors";
 import { Server } from './Types/Discord';
 
 dotenv.config();
@@ -36,11 +36,11 @@ export async function startup(): Promise<void> {
     try {
         await client.login(process.env.BOT_TOKEN)
 	    // await client.login("ABCDEFGHIJKLMNOPQRSTUVWX.YZabcd.efghijklmnopqrstuvwxyz012345678_9ABCDE") //Dummy token meant to test error while connecting
-        ConsoleEffects.Green(null, '\tSucceeded');
+        ConsolePlus.Green(null, '\tSucceeded');
     }
     catch(error)
     {
-        ConsoleEffects.Red(null, '\tFailed');
+        ConsolePlus.Red(null, '\tFailed');
         throw error;
     }
 	

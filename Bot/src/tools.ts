@@ -1,4 +1,4 @@
-import { ConsoleEffects } from './ConsoleColors';
+import { ConsolePlus } from './ConsoleColors';
 import isOnline from 'is-online';
 
 const connectionTest: () => Promise<boolean> = async () => {
@@ -8,14 +8,14 @@ const connectionTest: () => Promise<boolean> = async () => {
 	try {
 		connectionStatus = await isOnline();
 	} catch (error) {
-		ConsoleEffects.Red(null, '\tError checking internet connection:', error);
+		ConsolePlus.Red(null, '\tError checking internet connection:', error);
 		connectionStatus = false;
 	}		
 
 	if(connectionStatus)
-		ConsoleEffects.Green(null,'\tSucceeded, internet connection available.');
+		ConsolePlus.Green(null,'\tSucceeded, internet connection available.');
 	else
-		ConsoleEffects.Red(null,'\tFailed, no internet connection.');
+		ConsolePlus.Red(null,'\tFailed, no internet connection.');
 
 	return connectionStatus;
 }

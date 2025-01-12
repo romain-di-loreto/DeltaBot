@@ -1,4 +1,4 @@
-import { EffectsOptions, ConsoleEffects} from './ConsoleColors';
+import { EffectsOptions, ConsolePlus} from './ConsoleColors';
 
 var exitWasTriggered = false;
 
@@ -8,8 +8,8 @@ export function setExitHandler() {
     const exitHandler = (options: ExitOptions, exitCode: string | number) => {
         const previousState = exitWasTriggered;
         exitWasTriggered = true;
-        if (!previousState && exitCode === 'SIGINT') ConsoleEffects.Red([EffectsOptions.General.Reset], 'Interrupting the bot');
-        else if (!previousState && (exitCode || exitCode === 0)) ConsoleEffects.Red([EffectsOptions.General.Reset], 'Bot stopped with exit code: ', exitCode);
+        if (!previousState && exitCode === 'SIGINT') ConsolePlus.Red([EffectsOptions.General.Reset], 'Interrupting the bot');
+        else if (!previousState && (exitCode || exitCode === 0)) ConsolePlus.Red([EffectsOptions.General.Reset], 'Bot stopped with exit code: ', exitCode);
         if (options.cleanup) cleanup();
         if (!previousState && options.exit) process.exit();
     }
