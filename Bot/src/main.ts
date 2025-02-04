@@ -14,6 +14,8 @@ client.once(Events.ClientReady, (readyClient): void => {
 client.on(Events.MessageCreate, (createdMessage): void => {
     if(createdMessage.author.bot || !createdMessage.content.startsWith(prefix)) return
     
-    const [command, ...words] = createdMessage.content.substring(prefix.length).trimEnd().split(" ")
-    handleCliCommand(createdMessage, command, ...words)
-})
+    const [command, ...words] = createdMessage.content.substring(prefix.length).trimEnd().split(" ");
+    handleCliCommand(createdMessage, command, ...words).then(_ => {
+        if(createdMessage.deletable) createdMessage.delete();
+    });
+});
