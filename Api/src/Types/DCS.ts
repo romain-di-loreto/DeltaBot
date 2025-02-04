@@ -56,6 +56,7 @@ export type FlightGroup = {
 export type DB_DCSProfile = {
     id: number,
     user_id: number,
+    discord_name: string,
     name: string | null,
     modex: string | null
 }
@@ -76,10 +77,11 @@ export type DB_DCSFlightGroup = {
 }
 
 export type DB_DCSFlightMember = {
+    id: number,
     profile_id: number,
     group_id: number,
     plane_id: number,
-    name: number
+    position: number
 }
 
 export type DB_DCSSession = {
@@ -87,6 +89,6 @@ export type DB_DCSSession = {
     name: string | null,
     plane_id: number,
     map_id: number,
-    role: number,
+    role: string,
     flight_group_id: number | null
 }

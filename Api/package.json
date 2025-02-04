@@ -7,8 +7,8 @@
     "init": "npm i",
     "build": "tsc",
     "start": "node build/main.js",
-    "tests": "node build/tests.js",
     "dev": "nodemon --exec ts-node src/main.ts",
+    "tests": "node build/tests.js",
     "dev-tests": "nodemon --exec ts-node src/tests.ts"
   },
   "author": "AlphaDragons",
